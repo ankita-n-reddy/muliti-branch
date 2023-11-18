@@ -1,47 +1,18 @@
-pipeline {
-
-agent {
-		label {
-		
-				label 'built-in'
-				customWorkspace '/data/pipeline'
-				
-		}
-
-}
-
-stages {
-			stage ('create-file-1'){
-			
-			steps {
-						sh "rm -rf *"
-						sh "touch file1"
-			}
-			
-			}
-			
-			stage ('create-file-2'){
-			
-			steps {
-					dir ('/data/wsp2'){
-						sh "rm -rf *"
-						sh "touch file2"
-			}
-			
+pipeline { 
+			agent{
+			label{
+			label"built-in"
+			customWorkspace"/mnt/jenkins-master
 			}
 			}
-			
-			stage ('create-file-3') {
-			steps {
-					dir ('/data/wsp3'){
-						sh "rm -rf *"
-						sh "touch file3"
-			}
-			
+			stages{
+			stage("one"){
+			steps{
+			echo "this is master branch"
 			}
 			}
-			
-			
-
-
-
+			steps{
+			echo "this is dev branch"
+			}
+			}			
+  }
